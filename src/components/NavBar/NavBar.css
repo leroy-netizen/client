@@ -1,0 +1,10 @@
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10vh;
+    background-color: grey
+}
+.nav li{
+    list-style: none;
+}
