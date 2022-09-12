@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+const abortController = new AbortController()
 
 const useFetch = (url) => {
 
@@ -17,9 +18,10 @@ const useFetch = (url) => {
             const data = await response.json();
             setData(data)  
             setLoading(false)
+            abortController.abort()
         }
         getData()
-    }, [])
+    }, [url])
     
     return {error, loading, data} 
 
