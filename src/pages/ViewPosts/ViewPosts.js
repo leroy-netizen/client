@@ -1,8 +1,9 @@
 import React from 'react'
 import useFetch from '../../customHooks/useFetch'
+import { Link } from 'react-router-dom'
 
 const ViewPosts = () => {
-    const { data: posts, error, loading } = useFetch('https://jsonplaceholder.typicode.com/posts')
+    const { data: posts, error, loading } = useFetch('http://localhost:9292/posts')
     console.log(posts);
     
     return (
@@ -11,7 +12,15 @@ const ViewPosts = () => {
                  {loading ? <p>Loading...</p> : null}
             { 
                 posts.map((post) => (
-                    <h3>{ post.title}</h3>
+                    <div className="postCard" key={post.id}>
+                        <img src={post.imageurl} alt={post.title} />
+                        <p> Creator{ post.creator}</p>
+                        <h6> Title{ post.title}</h6>
+                     <Link to={`/posts/${post.id}`}>
+                        <p>Description:{ post.description}</p>
+                        <p> Created at:{ post.created_at}</p>
+                     </Link>
+                    </div>
                 ))
             }
         </div>
